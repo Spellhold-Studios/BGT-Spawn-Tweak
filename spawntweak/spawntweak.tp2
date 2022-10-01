@@ -1,0 +1,89 @@
+BACKUP  ~spawntweak/backup~
+SUPPORT ~http://www.shsforums.net/forum/261-bgt-weidu/~
+VERSION ~v1.1~
+README  ~spawntweak/config.ini~
+AUTO_EVAL_STRINGS
+LANGUAGE ~English~ ~english~ ~spawntweak/lang/english/setup.tra~
+
+// BGT Spawn Tweak
+BEGIN @100 DESIGNATED 100 LABEL ~s@-BGTSpawnTweak-Main~
+REQUIRE_PREDICATE (GAME_IS ~bgt~) @1
+INCLUDE ~spawntweak/lib/functions.tpa~ SILENT
+
+COPY_EXISTING ~ar3100.are~ ~spawntweak/temp/ar3100.are~
+  READ_LONG 0x60 spt_off
+  READ_SHORT (spt_off + 0x76) enc_diff
+  PATCH_IF (enc_diff < 100) BEGIN PATCH_FAIL @2 END
+BUT_ONLY
+
+// key, min, max => default
+ACTION_DEFINE_ASSOCIATIVE_ARRAY ary_cfg_defaults BEGIN
+  spawn_difficulty,      1,  10 =>  2
+  max_spawned_creatures, 1,  20 => 10
+  spawn_delay,           1,  10 =>  2
+  spawn_probability,     1, 100 => 85
+  spawn_once,            0,   1 =>  0
+  disable_spawns,        0,   1 =>  0
+END
+
+LAF act_read_cfg STR_VAR cfg_title = ~Spawn Configuration~ RET_ARRAY ary_cfg_user END
+
+PRINT @3 SILENT
+
+ACTION_FOR_EACH area IN
+  ~ar3100~ ~ar3200~ ~ar3300~ ~ar3400~ ~ar3401~ ~ar3498~ ~ar3499~ ~ar3800~ ~ar3900~ ~ar4100~ ~ar4200~ ~ar4300~
+  ~ar4400~ ~ar4600~ ~ar6519~ ~ar6600~ ~ar6900~ ~ar7000~ ~ar7100~ ~ar7223~ ~ar7324~ ~ar7325~ ~ar7326~ ~ar8300~
+  ~ar8400~ ~ar8500~ ~ar8600~ ~ar8602~ ~ar8700~ ~ar8800~ ~ar8900~ ~ar9000~ ~ar9100~ ~ar9200~ ~ar9300~ ~ar9400~
+  ~ar9500~ ~ar9600~ ~ar9700~ ~ar9798~ ~ar9799~ ~ar9900~ ~ara100~ ~ard000~ ~ard011~ ~ard014~ ~arw000~ ~arw012~
+  ~arw500~ BEGIN
+  COPY_EXISTING ~%area%.are~ ~override~
+    PHP_EACH ary_cfg_user AS key => value BEGIN
+      READ_LONG 0x60 spt_off
+      READ_LONG 0x64 spt_cnt
+      FOR (i = 0; i < spt_cnt; i += 1) BEGIN
+        PATCH_IF (~%key%~ STR_EQ ~spawn_difficulty~) BEGIN
+          WRITE_SHORT (0x76 + spt_off + 0xc8*i) %value%*100
+        END
+        PATCH_IF (~%key%~ STR_EQ ~spawn_delay~) BEGIN
+          WRITE_SHORT (0x78 + spt_off + 0xc8*i) %value%
+        END
+        PATCH_IF (~%key%~ STR_EQ ~spawn_once~) && (value == 1) BEGIN
+          WRITE_BYTE (0x7a + spt_off + 0xc8*i) 3 // disable after spawn
+        END
+        PATCH_IF (~%key%~ STR_EQ ~spawn_once~) && (value == 0) BEGIN
+          WRITE_BYTE (0x7a + spt_off + 0xc8*i) 1 // reactivate after spawn
+        END
+        PATCH_IF (~%key%~ STR_EQ ~max_spawned_creatures~) BEGIN
+          WRITE_SHORT (0x84 + spt_off + 0xc8*i) %value%
+        END
+        PATCH_IF (~%key%~ STR_EQ ~disable_spawns~) && (value == 1) BEGIN
+          WRITE_SHORT (0x86 + spt_off + 0xc8*i) 0 // deactivate spawn point
+        END
+        PATCH_IF (~%key%~ STR_EQ ~disable_spawns~) && (value == 0) BEGIN
+          WRITE_SHORT (0x86 + spt_off + 0xc8*i) 1 // activate spawn point
+        END
+        PATCH_IF (~%key%~ STR_EQ ~spawn_probability~) BEGIN
+          WRITE_SHORT (0x8c + spt_off + 0xc8*i) %value% // probability (day)
+          WRITE_SHORT (0x8e + spt_off + 0xc8*i) %value% // probability (night)
+        END
+      END
+    END
+  BUT_ONLY IF_EXISTS
+END
+
+// filename => creature power level
+ACTION_DEFINE_ASSOCIATIVE_ARRAY pch_cre_pwr_lvl BEGIN
+  battho   => 80
+  fgolem   => 50
+  ghoullor => 30
+  irongu   => 10
+  kobcomm  => 20
+  werewo   => 40
+  wolfwegl => 50
+END
+
+ACTION_PHP_EACH pch_cre_pwr_lvl AS filename => pwr_lvl BEGIN
+  COPY_EXISTING ~%filename%.cre~ ~override~
+    WRITE_LONG 0x18 %pwr_lvl%
+  BUT_ONLY
+END

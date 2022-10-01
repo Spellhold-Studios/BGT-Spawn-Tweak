@@ -1,0 +1,57 @@
+DEFINE_ACTION_FUNCTION act_read_cfg STR_VAR cfg_title = ~Config~ RET_ARRAY ary_cfg_user BEGIN
+  WITH_TRA ~%MOD_FOLDER%/lang/%LANGUAGE%/config.tra~ BEGIN
+    ACTION_IF (!FILE_EXISTS ~%MOD_FOLDER%/config.ini~) BEGIN
+      FAIL @1
+    END
+
+    COPY + ~%MOD_FOLDER%/config.ini~ ~%MOD_FOLDER%/read-config.tmp~
+      REPLACE_TEXTUALLY ~^[;#].*~ ~~
+      REPLACE_TEXTUALLY ~\b[ %TAB%]+\b~ ~_~
+      REPLACE_TEXTUALLY ~[ %TAB%]+~ ~~
+      REPLACE_TEXTUALLY ~=~ ~ = ~
+      REPLACE_TEXTUALLY ~^[%LNL%%MNL%%WNL%]+~ ~~
+      COUNT_2DA_ROWS 3 lines
+      FOR (i = 0; i < lines; i += 1) BEGIN
+        READ_2DA_ENTRY i 0 3 key
+        READ_2DA_ENTRY i 2 3 value
+        TO_LOWER key
+        PATCH_IF (~%key%~ STRING_COMPARE_REGEXP ~^[_0-9a-z]+$~ == 0) BEGIN
+          PATCH_IF (IS_AN_INT value) BEGIN
+            TEXT_SPRINT $ary_cfg_user(~%key%~) ~%value%~
+          END
+          ELSE BEGIN
+            PATCH_WARN @2
+          END
+        END
+        ELSE BEGIN
+          PATCH_WARN @3
+        END
+      END
+    BUT_ONLY
+
+    ACTION_PHP_EACH ary_cfg_defaults AS variable => default BEGIN
+      ACTION_IF (VARIABLE_IS_SET $ary_cfg_user(~%variable_0%~)) BEGIN
+        ACTION_IF (!IS_AN_INT $ary_cfg_user(~%variable_0%~))     ||
+                  ($ary_cfg_user(~%variable_0%~) < %variable_1%) ||
+                  ($ary_cfg_user(~%variable_0%~) > %variable_2%) BEGIN
+          OUTER_TEXT_SPRINT $ary_cfg_user(~%variable_0%~) ~%default%~
+          WARN @4
+        END
+      END
+      ELSE BEGIN
+        OUTER_TEXT_SPRINT $ary_cfg_user(~%variable_0%~) ~%default%~
+        WARN @5
+      END
+    END
+
+    PRINT ~%LNL%%MNL%%WNL%%cfg_title%%LNL%%MNL%%WNL%*******************~
+
+    ACTION_PHP_EACH ary_cfg_user AS key => value BEGIN
+      PRINT ~%key%: %value%~
+    END
+
+    PRINT ~%LNL%%MNL%%WNL%~
+
+    DELETE + ~%MOD_FOLDER%/read-config.tmp~
+  END
+END

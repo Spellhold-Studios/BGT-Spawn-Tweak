@@ -1,0 +1,5 @@
+@1 = ~File [%MOD_FOLDER%/config.ini] not found.~
+@2 = ~WARNING: Invalid value [%key%].~
+@3 = ~WARNING: Invalid key [%key%].~
+@4 = ~WARNING: Value out of range [%variable_0%]. Using default value [%default%].~
+@5 = ~WARNING: Value not set [%variable_0%]. Using default value [%default%].~
