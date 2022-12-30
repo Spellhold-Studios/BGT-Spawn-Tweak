@@ -1,6 +1,8 @@
 # BGT Spawn Tweak
 This little mod for Baldur's Gate Trilogy allows you to tweak the parameters of the area spawn points to change the difficulty of the encounters.
 
+[**Download**](https://github.com/SpellholdStudios/BGT-Spawn-Tweak/releases) &nbsp;|&nbsp; [**Config**](https://github.com/SpellholdStudios/BGT-Spawn-Tweak/blob/main/spawntweak/config.ini) &nbsp;|&nbsp; [**Forum**](http://www.shsforums.net/topic/60654-bgt-spawn-tweak/)
+
 ## Installation steps
 1. Install [Baldur's Gate Trilogy](https://github.com/SpellholdStudios/BGT-WeiDU).
 2. Copy **setup-spawntweak.exe** and the folder **spawntweak** to your game directory.
