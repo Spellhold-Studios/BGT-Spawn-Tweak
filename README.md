@@ -7,8 +7,8 @@
 [![Release](https://img.shields.io/github/v/release/Spellhold-Studios/BGT-Spawn-Tweak?include_prereleases&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
 [![Published](https://img.shields.io/github/release-date/Spellhold-Studios/BGT-Spawn-Tweak?display_date=published_at&label=published&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/Spellhold-Studios/BGT-Spawn-Tweak/total?color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
-[![Views](https://badges.pufler.dev/visits/Spellhold-Studios/BGT-Spawn-Tweak?label=views&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 <br>
+[![Views](https://badges.pufler.dev/visits/Spellhold-Studios/BGT-Spawn-Tweak?label=views&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 [![Games](https://img.shields.io/badge/games-BGT-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 [![Language](https://img.shields.io/badge/language-en-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 
