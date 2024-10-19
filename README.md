@@ -1,14 +1,8 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Spellhold-Studios/Spellhold-Studios.github.io/main/assets/images/shs-corner-logo.png" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Spellhold-Studios/Spellhold-Studios.github.io/main/assets/images/shs-corner-logo.png" />
-  <img align="right" alt="SHS logo" src="https://raw.githubusercontent.com/Spellhold-Studios/Spellhold-Studios.github.io/main/assets/images/shs-corner-logo.png" width="22%">
-</picture>
-
 [![Release](https://img.shields.io/github/v/release/Spellhold-Studios/BGT-Spawn-Tweak?include_prereleases&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
 [![Published](https://img.shields.io/github/release-date/Spellhold-Studios/BGT-Spawn-Tweak?display_date=published_at&label=published&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/Spellhold-Studios/BGT-Spawn-Tweak/total?color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
-<br>
 [![Views](https://badges.pufler.dev/visits/Spellhold-Studios/BGT-Spawn-Tweak?label=views&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%a0%20macOS%20%a0%20Linux%20%a0%20Project%20Infinity-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 [![Games](https://img.shields.io/badge/games-BGT-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 [![Language](https://img.shields.io/badge/language-en-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 
@@ -20,6 +14,14 @@ Games full list: BG1 BG2 BGT BG%3AEE SoD BG2%3AEE EET IWD1 IWD2 IWD%3AEE PST PST
 IETF language tags: https://spellhold-studios.github.io/readmes/template-basic/ietf-lang-tags.pdf
 Why some badges update slowly: https://github.com/pujux/badge-it/issues/78
 -->
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Spellhold-Studios/Spellhold-Studios.github.io/main/assets/images/shs-corner-logo.png" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Spellhold-Studios/Spellhold-Studios.github.io/main/assets/images/shs-corner-logo.png" />
+  <img alt="SHS logo" src="https://raw.githubusercontent.com/Spellhold-Studios/Spellhold-Studios.github.io/main/assets/images/shs-corner-logo.png" width="220" height="115">
+</picture>
 
 # BGT Spawn Tweak
 
