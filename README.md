@@ -1,5 +1,5 @@
 [![Release](https://img.shields.io/github/v/release/Spellhold-Studios/BGT-Spawn-Tweak?include_prereleases&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
-[![Published](https://img.shields.io/github/release-date/Spellhold-Studios/BGT-Spawn-Tweak?display_date=published_at&label=published&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
+[![Published](https://img.shields.io/github/release-date-pre/Spellhold-Studios/BGT-Spawn-Tweak?display_date=published_at&label=published&color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/Spellhold-Studios/BGT-Spawn-Tweak/total?color=%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%a0%20macOS%20%a0%20Linux%20%a0%20Project%20Infinity-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
 [![Games](https://img.shields.io/badge/games-BGT-%2392403a)](https://github.com/Spellhold-Studios/BGT-Spawn-Tweak/releases)
